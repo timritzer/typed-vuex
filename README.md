@@ -10,5 +10,5 @@ Because of the extensive useage of generics to infer the complex tree of a Vuex 
 you must pass in your store to discover the structure available to those methods. The store instance itself is only used for type inferrence, and all actual functionality is simply from vuex.
 
 ## Missing Features:
-[] Dynamic Module Load/Unloading - This is likely never possible in a fully typed store, as unregistering modules changes what is available on the store.
-[] Root State/Getters/Mutations/Etc. Currently types are built towards namespaced modules. This will be added, and is in progres.
+- [ ] Dynamic Module Load/Unloading - This is likely never possible in a fully typed store, as unregistering modules changes what is available on the store.
+- [ ] Root State/Getters/Mutations/Etc. Currently types are built towards namespaced modules. This will be added, and is in progres.
