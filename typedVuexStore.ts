@@ -1,9 +1,15 @@
 ﻿import {
-  ActionContext,
-  CommitOptions,
-  DispatchOptions,
-  Module as VuexModule,
-  Store as VuexStore
+    ActionContext,
+    CommitOptions,
+    DispatchOptions,
+    Module as VuexModule,
+    Store as VuexStore,
+    Getter as VuexGetter,
+    Action as VuexAction,
+    Mutation as VuexMutation,
+    Plugin,
+    ActionObject,
+    ActionHandler
 } from "vuex";
 import { ComponentPublicInstance } from "vue";
 import {
@@ -14,7 +20,8 @@ import {
   Replace,
   PathValue,
   AnyFunction,
-  AnyReturn
+    AnyReturn,
+  IfDefined
 } from "type-helpers";
 
 /// ------------------------------------Mappers------------------------------------------------
@@ -799,7 +806,10 @@ export type TypedModule<
 
 //Will need to extend to support root state. Likely just needs more generics, and types anded/or'd with the non namespaced versions
 //Excluding dynamic install/removal of modules, as this is not type safe.
-export type TypedStore<TState, TModules extends AnyTypedModule<TState>> = Omit<
+export type TypedStore<
+    TState,
+    TModules extends { commit: any, dispatch: any, getters: any, actions: any, mutations: any },
+    TOptions extends StoreOptions<TState> = {}> = Omit<
   VuexStore<TState>,
   | "getters"
   | "commit"
@@ -808,13 +818,50 @@ export type TypedStore<TState, TModules extends AnyTypedModule<TState>> = Omit<
   | "registerModule"
   | "unregisterModule"
 > & {
-  state: TState;
-  commit: TModules["commit"];
-  dispatch: TModules["dispatch"];
-  getters: TModules["getters"];
-  actionTypes: TModules["actions"];
-  mutationTypes: TModules["mutations"];
+        state: TState;
+        commit: TModules["commit"] & Commit<IfDefined<TOptions["mutations"]>>;
+        dispatch: TModules["dispatch"] & Dispatch<RootActions<TState, TOptions>>;
+        getters: TModules["getters"] & TOptions["getters"];
+        actionTypes: TModules["actions"] & TOptions["actions"];
+        mutationTypes: TModules["mutations"] & TOptions["mutations"];
 };
+
+type RootActions<TState, TOptions extends StoreOptions<TState>> = IfDefined<TOptions["actions"]> &
+    {
+    [K in keyof TOptions["actions"]]:
+    TOptions["actions"][K] extends ActionObject<TState, TState> ?
+    TOptions["actions"][K]["handler"] :
+    TOptions["actions"][K] & ActionHandler<TState, TState> }
+
+export interface StoreOptions<TState> {
+    state?: TState | (() => TState);
+    getters?: {
+        [key: string]: VuexGetter<TState, TState> extends infer TRootGetters
+        ? TRootGetters
+        : never;
+    };
+    actions?: {
+        [key: string]: VuexAction<
+            TState,
+            TState
+        > extends infer TRootActions
+        ? TRootActions
+        : never;
+    };
+    mutations?: {
+        [key: string]: VuexMutation<TState> extends infer TRootMutations
+        ? TRootMutations
+        : never;
+    };
+    modules?: {
+        [key: string]: unknown extends infer TModule
+        ? TModule
+        : never;
+    };
+    plugins?: Plugin<AnyTypedStore>[];
+    strict?: boolean;
+    devtools?: boolean;
+}
 
 export type AugmentedActionContext<
   TMutations extends FunctionObject<TMutations>,
