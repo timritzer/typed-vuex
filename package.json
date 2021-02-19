@@ -1,0 +1,29 @@
+{
+  "name": "typed-vuex-wrapper",
+  "version": "0.5.0",
+  "description": "Typed wrapper on vuex 4 to allow easy Typescript usage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timritzer/typed-vuex.git"
+  },
+  "keywords": [
+    "typescript",
+    "vuex"
+  ],
+  "author": "Timothy Ritzer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/timritzer/typed-vuex/issues"
+  },
+  "homepage": "https://github.com/timritzer/typed-vuex#readme",
+  "dependencies": {
+    "type-helpers": "file:../type-helpers",
+    "typescript": "^4.1.5",
+    "vue": "^3.0.4",
+    "vuex": "^4.0.0-rc.2"
+  }
+}
