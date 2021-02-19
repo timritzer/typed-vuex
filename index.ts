@@ -22,6 +22,7 @@ export * from "./ambientTypes";
 
 export { createLogger, ActionContext, ActionTree, Module as  ModuleDefinition } from "vuex";
 
+//Infer the store type when creating the store
 export function createStore<
 	TOptions extends StoreOptions<any>,
 	TModules extends Exclude<TOptions["modules"], undefined>,
@@ -33,16 +34,15 @@ export function createStore<
 	) as unknown as TypedStore<TRootState, TCombinedModules, TOptions>;
 }
 
-export function useStore<TStore extends AnyTypedStore>(
+//Will work automatically if you use
+export function useStore<TStore extends AnyTypedStore = StoreType>(
   injectKey?: InjectionKey<TStore> | string
 ) {
   return vuex.useStore(injectKey);
 }
 
 
-
-
-//From Vue attempt
+//Works without declaration merging
 export function mapper<TStore extends AnyTypedStore>() {
 	const mapActions = vuex.mapActions as unknown as MapActions<TStore>;
 	const mapState = vuex.mapState as unknown as MapState<TStore>;
