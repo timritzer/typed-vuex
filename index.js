@@ -1,13 +1,10 @@
 import * as vuex from "vuex";
 export * from "./typedVuexStore";
 export * from "./ambientTypes";
-export { createLogger, ActionContext, ActionTree, Module as ModuleDefinition, } from "vuex";
+export { createLogger } from "vuex";
 //Infer the store type when creating the store
 export function createStore(options) {
     return vuex.createStore(options);
-}
-export function useStore(injectKey) {
-    return vuex.useStore(injectKey);
 }
 //Works without declaration merging
 export function mapper() {
@@ -22,3 +19,8 @@ export function mapper() {
         mapGetters,
     };
 }
+export const mapActions = vuex.mapActions;
+export const mapState = vuex.mapState;
+export const mapGetters = vuex.mapGetters;
+export const mapMutations = vuex.mapMutations;
+export const useStore = vuex.useStore;

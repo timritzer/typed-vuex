@@ -21,9 +21,9 @@
   },
   "homepage": "https://github.com/timritzer/typed-vuex#readme",
   "dependencies": {
-    "type-helpers": "file:../type-helpers",
-    "typescript": "^4.1.5",
-    "vue": "^3.0.4",
-    "vuex": "^4.0.0-rc.2"
+    "type-helpers": "file:c:/Github Code/type-helpers",
+    "typescript": "^4.1.0",
+    "vuex": "4.0.0",
+    "vue": "3.0.4"
   }
 }

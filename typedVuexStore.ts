@@ -874,5 +874,4 @@ export type AugmentedActionContext<
   ): ReturnType<TMutations[Key]>;
 } & Omit<ActionContext<State, RootState>, "commit">;
 
-declare module "vuex" {}
 //#endregion

@@ -13,11 +13,11 @@ import {
 	FunctionObject,
 } from "./typedVuexStore";
 
-export const mapActions: MapActions<StoreType> = vuex.mapActions as any;
-export const mapState: MapState<StoreType> = vuex.mapState as any;
-export const mapGetters: MapGetters<StoreType> = vuex.mapGetters as any;
-export const mapMutations: MapMutations<StoreType> = vuex.mapMutations as any;
+export const mapActions: MapActions<StoreType>;
+export const mapState: MapState<StoreType>;
+export const mapGetters: MapGetters<StoreType>;
+export const mapMutations: MapMutations<StoreType>;
 
-export const useStore: <TStore extends AnyTypedStore = StoreType>(...params: Parameters<vuex.useStore>) => ReturnType<vuex.useStore> = vuex.useStore;
+export const useStore: <TStore extends AnyTypedStore = StoreType>(...params: Parameters<typeof vuex.useStore>) => ReturnType<typeof vuex.useStore>;
 
 export interface StoreType {}

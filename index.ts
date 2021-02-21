@@ -17,6 +17,8 @@ import {
   StoreOptions,
 } from "./typedVuexStore";
 
+import * as ambient from "./ambientTypes";
+
 export * from "./typedVuexStore";
 export * from "./ambientTypes";
 
@@ -24,7 +26,7 @@ export {
   createLogger,
   ActionContext,
   ActionTree,
-  Module as ModuleDefinition,
+  Module as ModuleDefinition
 } from "vuex";
 
 //Infer the store type when creating the store
@@ -45,12 +47,6 @@ export function createStore<
   ) as unknown) as TypedStore<TRootState, TCombinedModules, TOptions>;
 }
 
-export function useStore<TStore extends AnyTypedStore>(
-  injectKey?: InjectionKey<TStore> | string
-): TStore {
-  return vuex.useStore(injectKey) as unknown as TStore;
-}
-
 //Works without declaration merging
 export function mapper<TStore extends AnyTypedStore>() {
   const mapActions = (vuex.mapActions as unknown) as MapActions<TStore>;
@@ -64,3 +60,11 @@ export function mapper<TStore extends AnyTypedStore>() {
     mapGetters,
   };
 }
+
+
+export const mapActions: typeof ambient.mapActions = vuex.mapActions as any;
+export const mapState: typeof ambient.mapState = vuex.mapState as any;
+export const mapGetters: typeof ambient.mapGetters = vuex.mapGetters as any;
+export const mapMutations: typeof ambient.mapMutations = vuex.mapMutations as any;
+
+export const useStore: typeof ambient.useStore = vuex.useStore;
