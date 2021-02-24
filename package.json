@@ -1,8 +1,9 @@
 {
   "name": "typed-vuex-wrapper",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Typed wrapper on vuex 4 to allow easy Typescript usage",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

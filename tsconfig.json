@@ -3,6 +3,10 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
+	"strict": true,
+	"importHelpers": true,
+	"skipLibCheck": true,
+	"esModuleInterop": true,
     "lib": [
       "esnext",
       "dom"
