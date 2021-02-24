@@ -1,7 +1,7 @@
 import * as vuex from "vuex";
 export * from "./typedVuexStore";
 export * from "./ambientTypes";
-export { createLogger } from "vuex";
+export { createLogger, ActionContext, ActionTree, Module as ModuleDefinition } from "vuex";
 //Infer the store type when creating the store
 export function createStore(options) {
     return vuex.createStore(options);

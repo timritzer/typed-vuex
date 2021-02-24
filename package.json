@@ -22,8 +22,13 @@
   "homepage": "https://github.com/timritzer/typed-vuex#readme",
   "dependencies": {
     "type-helpers": "file:c:/Github Code/type-helpers",
-    "typescript": "^4.1.0",
-    "vuex": "4.0.0",
-    "vue": "3.0.4"
+    "typescript": "^4.1.0"
+  },
+  "peer-dependencies": {
+    "vuex": "^4.0.0",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1"
   }
 }

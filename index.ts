@@ -1,5 +1,4 @@
-﻿import { InjectionKey } from "vue";
-import * as vuex from "vuex";
+﻿import * as vuex from "vuex";
 
 import { UnionToIntersection } from "type-helpers";
 import {
@@ -38,7 +37,7 @@ export function createStore<
   > extends infer TCombined
     ? TCombined extends AnyTypedModule<TRootState>
       ? TCombined
-      : never
+      : AnyTypedModule<TRootState> //TODO: Make this less permissive. Never is too strict, AnyModule is too permissive. Need a middle ground, or better options validations for when they are not compliant.
     : never,
   TRootState extends TOptions["state"]
 >(options: TOptions) {
