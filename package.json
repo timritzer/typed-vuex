@@ -1,6 +1,6 @@
 {
   "name": "typed-vuex-wrapper",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Typed wrapper on vuex 4 to allow easy Typescript usage",
   "main": "index.js",
   "type": "module",
