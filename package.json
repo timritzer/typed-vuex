@@ -1,6 +1,6 @@
 {
   "name": "typed-vuex-wrapper",
-  "version": "0.5.2",
+  "version": "0.5.4",
   "description": "Typed wrapper on vuex 4 to allow easy Typescript usage",
   "main": "index.js",
   "type": "module",
@@ -23,13 +23,15 @@
   "homepage": "https://github.com/timritzer/typed-vuex#readme",
   "dependencies": {
     "type-helpers": "0.5.0",
-    "typescript": "^4.1.0"
+    "typescript": "^4.1.0",
+    "tslib": "*"
   },
   "peer-dependencies": {
     "vuex": "^4.0.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.24.1"
+    "vuex": "^4.0.0",
+    "vue": "^3.0.0"
   }
 }
