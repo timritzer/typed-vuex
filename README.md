@@ -12,3 +12,6 @@ you must pass in your store to discover the structure available to those methods
 ## Missing Features:
 - [ ] Dynamic Module Load/Unloading - This is likely never possible in a fully typed store, as unregistering modules changes what is available on the store.
 - [ ] Root State/Getters/Mutations/Etc. Currently types are built towards namespaced modules. This will be added, and is in progres.
+
+## Usage Example:
+https://github.com/timritzer/typed-vuex-examples
